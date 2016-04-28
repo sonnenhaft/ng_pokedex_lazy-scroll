@@ -1,0 +1,11 @@
+## folders
+.tmp
+.idea
+deployment
+node_modules
+bower_components
+coverage
+index.html
+*.log
+*.css
+*.xml

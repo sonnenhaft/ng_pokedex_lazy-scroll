@@ -1,0 +1,40 @@
+pokedex-header {
+    .pokedex-header {
+        background: #1F2532;
+        color: white;
+        padding: 5px;
+        font-size: 7px;
+        font-weight: bold;
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        padding-left: 65px;
+        img {
+            vertical-align: middle;
+            width: 20px;
+        }
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .pokedex-header-height {
+        height: 30px;
+    }
+
+    @media only screen and (max-width: 900px) {
+        .pokedex-header {
+            padding-left: 10px;
+            position: static;
+        }
+        .pokedex-header-height {
+            display: none;
+        }
+    }
+}

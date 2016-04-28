@@ -1,0 +1,13 @@
+<div class="pokedex">
+    <h1>POK&Eacute;DEX</h1>
+
+    <div ng-repeat="pokemon in pokemons" pokemon-card="pokemon" ui-sref="pokemon({id: $index + 1})" class="float-hook"></div>
+    <div ng-if="loadMore">
+        <div class="float-hook" ui-scroll="pokemon in pokemonSource" buffer-size="20" padding="1.8"
+             pokemon-card="pokemon" ui-sref="pokemon({id: $index + pokemons.length})">
+        </div>
+    </div>
+    <div class="clear-float-hook">
+        <button ng-click="loadMore = true" ng-hide="loadMore" class="load-more">load more</button>
+    </div>
+</div>

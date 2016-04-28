@@ -1,0 +1,12 @@
+<div class="ajax-loader" ng-hide="pokemon.$resolved && imageLoaded"></div>
+<div ng-class="{'opacity-animation': pokemon.$resolved, 'transparent': !pokemon.$resolved}" id="pokemonCard{{::pokemon.$id}}">
+    <div class="pokemons-header">#{{::pokemon.$id}} <b>{{::pokemon.name}}</b></div>
+    <div class="pokemon-image"  ng-class="{'opacity-animation': imageLoaded, 'transparent': !imageLoaded}">
+        <img ng-src="{{large ? pokemon.largeImage : pokemon.image}}" is-image-loaded="imageLoaded"/>
+    </div>
+
+    <div class="type-buttons">
+        <div class="left" ng-class="::pokemon.firstType">{{::pokemon.firstType}}</div>
+        <div class="right" ng-show="::pokemon.secondType" ng-class="::pokemon.secondType">{{::pokemon.secondType}}</div>
+    </div>
+</div>

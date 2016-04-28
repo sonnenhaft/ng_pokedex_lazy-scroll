@@ -1,0 +1,64 @@
+<div class="pokemon-info">
+    <div class="control-buttons">
+        <div class="left" ui-sref="pokemon({id: prevId})">
+            <span ng-class="{'opacity-animation': prev.$resolved, 'transparent': !prev.$resolved}">
+                <span class="pokemon-id animate-show">#{{prev.$id}}</span> {{prev.name}}
+            </span>
+        </div>
+        <div class="right" ui-sref="pokemon({id: nextId})">
+            <span ng-class="{'opacity-animation': next.$resolved, 'transparent': !next.$resolved}">
+                {{next.name}} <span class="pokemon-id" ng-show="next.$resolved">#{{next.$id}}</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="sub-wrapper">
+        <div class="header" ng-class="{'opacity-animation': pokemon.$resolved, 'transparent': !pokemon.$resolved}">#{{::pokemon.$id}} <b>{{::pokemon.name}}</b></div>
+        <div class="card-wrapper">
+            <div pokemon-card="pokemon" large="true"></div>
+            <div class="description" ng-class="{'opacity-animation': pokemon.description, 'transparent': !pokemon.description}">
+                {{pokemon.description}}
+            </div>
+        </div>
+        <div style="display: inline-block">
+            <div class="abilities-block">
+                <div class="info">Height <div class="sub-info">{{pokemon.height/10}} m</div></div>
+                <div class="info">Category <div class="sub-info">Speed</div></div>
+                <div class="info">Weight <div class="sub-info">{{pokemon.weight/10}} kg</div></div>
+                <div class="info">Abilities <div class="sub-info capitalize">
+                    <span ng-repeat="ability in pokemon.abilities | limitTo: 3 track by ability.name">{{ability.name}} </span>
+                </div></div>
+                <div class="info">Gender <div class="sub-info">F / M</div></div>
+            </div>
+            <div class="chart-block">
+                Base Stats
+                <svg width="340" height="160">
+                    <g ng-repeat="field in fields" ng-attr-transform="translate({{58*$index}}, 10)">
+                        <rect  height="120" width="50" height="500" fill="white"></rect>
+                        <rect  height="0" y="120"  ng-attr-height="{{pokemon[field.key] || 0}}" ng-attr-y="{{120-pokemon[field.key]}}" width="50" fill="#4A90E2">
+                        </rect>
+                        <g transform="translate(25,135)" font-size="12" text-anchor="middle">
+                            <text>{{field.value}}</text>
+                            <text y="12">{{field.value2}}</text>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <h1>Moves</h1>
+
+        <div class="move-groups">
+            <div ng-repeat="moves in pokemon.groupedMoves" class="move-group">
+                <!--limiting to 5 in here because it is just a demo app-->
+                <div ng-repeat="move in moves | limitTo : 5" class="move" ng-class="move.learn_type">
+                    {{::move.name}}
+                </div>
+            </div>
+            <div>
+                <button ui-sref="pokedex({infinitive: true})" class="explore-more">EXPLORE MORE POKEMON</button>
+            </div>
+        </div>
+    </div>
+
+</div>
