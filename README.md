@@ -2,8 +2,6 @@
 ---
 #### Intro and status
 
-demo https://bitbucket.org/sonnanhaft/pokedex-honeypot
-
 Hi, my name is Vladimir, if you are reading this, you are checking my test task progress.
 I've prepared partly complete pokedex, accordingly to task rules. Not everything is perfect
 but I'm proud, at least because I've complete task quickly (around 8-12 working hours at this step)
