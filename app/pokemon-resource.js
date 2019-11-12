@@ -8,15 +8,14 @@ angular.module('pokedex.pokemon-resource', [
     };
 
     this.$get = function ($resource, $http) {
-        var pokeApi = 'http://pokeapi.co';
-        var pokemonResource = $resource(pokeApi + '/api/v1/pokemon/:id', {id: '@id'}, {
+        var pokemonResource = $resource('https://pokeapi.co/api/v2/pokemon/:id', {id: '@id'}, {
             'get': {cache: true, interceptor: {response: responseInterceptor}}
         });
 
         pokemonResource.prototype.$loadFirstDescription = function () {
             var pokemon = this;
             return this.$promise.then(function () {
-                return $http.get(pokeApi + pokemon.descriptions[0].resource_uri);
+                return $http.get(pokemon.species.url);
             }).then(function (response) {
                 pokemon.description = response.data.description;
             });
@@ -28,16 +27,12 @@ angular.module('pokedex.pokemon-resource', [
 
     function responseInterceptor(pokemon) {
         pokemon = pokemon.resource;
-        var id = pokemon.national_id;
-        if (id < 10) {
-            id = '00' + id;
-        } else if (id < 100) {
-            id = '0' + id;
-        }
+        var id = pokemon.id;
+
         pokemon.types = pokemon.types.reverse();
         pokemon.$id = id;
-        pokemon.image = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + id + '.png';
-        pokemon.largeImage = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + id + '.png';
+        pokemon.image = pokemon.sprites.front_default;
+        pokemon.largeImage = pokemon.sprites.front_shiny;
         pokemon.firstType = pokemon.types[0].name;
         if (pokemon.types[1]) {
             pokemon.secondType = pokemon.types[1].name;
