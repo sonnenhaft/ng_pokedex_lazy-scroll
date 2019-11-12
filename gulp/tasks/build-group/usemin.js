@@ -18,8 +18,8 @@ gulp.task('$usemin', ['$inject-files'], function () {
     var staticAssetsDir = 'static-assets/';
 
     //TODO: extract this area to config.js
-    gulp.src(['favicon.ico']).pipe(copy('deployment/', {prefix: 10}));
-    gulp.src(['app/**/*.png', 'app/**/*.gif']).pipe(copy('deployment/' + staticAssetsDir, {prefix: 10}));
+    gulp.src(['favicon.ico']).pipe(copy('build/', {prefix: 10}));
+    gulp.src(['app/**/*.png', 'app/**/*.gif']).pipe(copy('build/' + staticAssetsDir, {prefix: 10}));
 
     var clonesArray = [
         {name: 'css'}, {name: 'js', isJs: true}

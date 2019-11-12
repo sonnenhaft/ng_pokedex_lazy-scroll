@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Demo pokemon app",
   "scripts": {
-    "setup": "npm install && bower install"
+    "bower-install": "node node_modules/bower/bin/bower install",
+    "start": "node node_modules/gulp/bin/gulp.js default",
+    "build": "node node_modules/gulp/bin/gulp.js build"
   },
   "author": "Vladimir Shein",
   "license": "MIT",
