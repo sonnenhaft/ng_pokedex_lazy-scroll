@@ -20,7 +20,7 @@ gulp.task('$connect', ['$inject-files'], function () {
 gulp.task('default', ['$connect', '$watch', '$watch-index', '$open', '$styl']);
 
 gulp.task('$server', ['$usemin'], function () {
-    return require('gulp-connect').server({root: './deployment', port: port});
+    return require('gulp-connect').server({root: './build', port: port});
 });
 
 gulp.task('host', ['$clean-generated'], function (cb) {
